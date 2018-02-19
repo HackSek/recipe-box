@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+   </head>
+   <body style="margin-top: 10px;background: honeydew">
+      <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+      <h1 style="text-align:center !important;">A Recipe Box built by <a href="#">Hachem</a></h1>
+      <div class="container">
+         <!-- Modal Structure -->
+         <div class="row">
+            <div class="col s7">
+               {{{body}}}
+            </div>
+         </div>
+         <p class="center-align">
+            <a class="waves-effect waves-light btn modal-trigger center-align" href="#modal1">Add a recipe</a>
+         </p>
+         <div id="modal1" class="modal modal-fixed-footer">
+            <form method="post" action="/add">
+               <div class="modal-content">
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                        <label for="recipe_name">recipe name</label>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input id="recipe_ingredients" name="recipe_ingredients" type="text" class="validate">
+                        <label for="recipe_ingredients">ingredients</label>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input id="recipe_directions" name="recipe_directions" type="text" class="validate">
+                        <label for="recipe_directions">directions</label>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                  <input type="submit" class="waves-effect waves-green btn-flat" value="save">
+               </div>
+            </form>
+         </div>
+      </div>
+      <script type="text/javascript">
+         $(document).ready(function() {
+
+            $('.modal').modal({
+
+                dismissible: false
+
+            });
+
+         });
+
+      </script>
+   </body>
+</html>

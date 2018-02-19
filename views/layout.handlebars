@@ -1,0 +1,97 @@
+<br>
+<ul class="collapsible popout" data-collapsible="accordion" style="width: 150%;margin-right: 50px;margin-left: 50px;">
+   {{#each recipes}}
+   <li>
+      <div class="collapsible-header">
+         {{recipe_name}}
+      </div>
+      <div class="collapsible-body" style="background:white !important;padding-left: 10px !important;padding-right: 10px !important;">
+         <br><br>
+         <span><strong>Ingredients : </strong>{{recipe_ingredients}}</span>
+         <br><br>
+         <span><strong>Directions : </strong>{{recipe_directions}}</span>
+         <br><br>
+         <div class="row">
+            <a class="waves-effect waves-light btn modal-trigger edit-recipe" style="margin-left: 10px !important;" href="#modal2" data-id="{{id}}" data-name="{{recipe_name}}" data-ingredients="{{recipe_ingredients}}" data-directions="{{recipe_directions}}">Edit</a>
+            <button data-id={{id}} class="btn waves-effect waves-light delete-recipe col s2" style="margin-left: 10px !important;background-color: red !important;">Del</button>
+         </div>
+         <br>
+      </div>
+   </li>
+   {{/each}}
+</ul>
+<div id="modal2" class="modal modal-fixed-footer">
+   <form method="post" action="/edit">
+      <div class="modal-content">
+         <input type="hidden" name="id" id="edit_id">
+         <div class="row">
+            <div class="input-field col s12">
+               <input id="edit_recipe_name" name="recipe_name" type="text" class="validate">
+            </div>
+         </div>
+         <div class="row">
+            <div class="input-field col s12">
+               <input id="edit_recipe_ingredients" name="recipe_ingredients" type="text" class="validate">
+            </div>
+         </div>
+         <div class="row">
+            <div class="input-field col s12">
+               <input id="edit_recipe_directions" name="recipe_directions" type="text" class="validate">
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+         <input type="submit" class="waves-effect waves-green btn-flat" value="save">
+      </div>
+   </form>
+</div>
+<script type="text/javascript">
+   $(document).ready(function(){
+
+     $('.delete-recipe').on('click', function() {
+
+
+
+       var id = $(this).data('id');
+
+       var url = '/delete/' + id;
+
+       if(confirm('do you really want to delete this recipe ?')) {
+
+         $.ajax({
+           url: url,
+           type: 'DELETE',
+
+           success: function(result) {
+
+             window.location.href = '/';
+
+           },
+
+           error: function(err) {
+
+             console.log(err);
+
+           }
+
+         })
+
+       }
+
+     });
+
+   $('.edit-recipe').on('click', function() {
+
+
+     $('#edit_recipe_name').val($(this).data('name'));
+     $('#edit_recipe_ingredients').val($(this).data('ingredients'));
+     $('#edit_recipe_directions').val($(this).data('directions'));
+     $('#edit_id').val($(this).data('id'));
+
+
+        });
+
+     });
+
+</script>
